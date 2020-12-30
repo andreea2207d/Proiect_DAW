@@ -29,19 +29,19 @@ namespace DAWProject.Repositories.GenericRepository
             return _table.AsNoTracking();
         }
 
-        public void Create(TEntity entity)
+        public TEntity Create(TEntity entity)
         {
-            _table.Add(entity);
+            return _table.Add(entity).Entity;
         }
 
-        public void Update(TEntity entity)
+        public TEntity Update(TEntity entity)
         {
-            _table.Update(entity);
+            return _table.Update(entity).Entity;
         }
 
-        public void Delete(TEntity entity)
+        public TEntity Delete(TEntity entity)
         {
-            _table.Remove(entity);
+            return _table.Remove(entity).Entity;
         }
         public void CreateRange(IEnumerable<TEntity> entities)
         {

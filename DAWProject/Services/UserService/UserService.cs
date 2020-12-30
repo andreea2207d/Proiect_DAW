@@ -11,7 +11,7 @@ using System.Security.Claims;
 using DAWProject.Helpers;
 using Microsoft.Extensions.Options;
 
-namespace DAWProject.Services.UserServices
+namespace DAWProject.Services.UserService
 {
     public class UserService: IUserService
     {

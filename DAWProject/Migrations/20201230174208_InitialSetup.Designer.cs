@@ -4,14 +4,16 @@ using DAWProject.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace DAWProject.Migrations
 {
     [DbContext(typeof(DawAppContext))]
-    partial class DawAppContextModelSnapshot : ModelSnapshot
+    [Migration("20201230174208_InitialSetup")]
+    partial class InitialSetup
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -151,15 +153,7 @@ namespace DAWProject.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid>("TeamLeaderId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid?>("TeamLeaderId1")
-                        .HasColumnType("uniqueidentifier");
-
                     b.HasKey("Id");
-
-                    b.HasIndex("TeamLeaderId1");
 
                     b.ToTable("Team");
                 });
@@ -196,6 +190,9 @@ namespace DAWProject.Migrations
                     b.Property<Guid>("TeamId")
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<Guid?>("TeamId1")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<string>("Username")
                         .HasColumnType("nvarchar(max)");
 
@@ -206,6 +203,10 @@ namespace DAWProject.Migrations
                     b.HasIndex("RoleId");
 
                     b.HasIndex("TeamId");
+
+                    b.HasIndex("TeamId1")
+                        .IsUnique()
+                        .HasFilter("[TeamId1] IS NOT NULL");
 
                     b.ToTable("User");
                 });
@@ -232,13 +233,6 @@ namespace DAWProject.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("DAWProject.Models.Team", b =>
-                {
-                    b.HasOne("DAWProject.Models.User", "TeamLeader")
-                        .WithMany()
-                        .HasForeignKey("TeamLeaderId1");
-                });
-
             modelBuilder.Entity("DAWProject.Models.User", b =>
                 {
                     b.HasOne("DAWProject.Models.Department", "Department")
@@ -258,6 +252,10 @@ namespace DAWProject.Migrations
                         .HasForeignKey("TeamId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.HasOne("DAWProject.Models.Team", null)
+                        .WithOne("TeamLeader")
+                        .HasForeignKey("DAWProject.Models.User", "TeamId1");
                 });
 
             modelBuilder.Entity("DAWProject.Models.UserProject", b =>

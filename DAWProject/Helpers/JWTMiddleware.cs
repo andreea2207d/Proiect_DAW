@@ -1,4 +1,4 @@
-﻿using DAWProject.Services.UserServices;
+﻿using DAWProject.Services.UserService;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Options;
 using System;

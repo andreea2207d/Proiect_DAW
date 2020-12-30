@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using DAWProject.Helpers;
 using DAWProject.Models.DTOs;
-using DAWProject.Services.UserServices;
+using DAWProject.Services.UserService;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 

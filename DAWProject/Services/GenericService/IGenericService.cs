@@ -1,10 +1,13 @@
-﻿using System.Collections.Generic;
+﻿using DAWProject.Models;
+using DAWProject.Models.DTOs;
+using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace DAWProject.Repositories.GenericRepository
+namespace DAWProject.Services.GenericService
 {
-    public interface IGenericRepository<TEntity> where TEntity : class
+    public interface IGenericService<TEntity> where TEntity : class
     {
         IQueryable<TEntity> GetAllAsQuerable();
         Task<List<TEntity>> GetAll();
@@ -31,6 +34,5 @@ namespace DAWProject.Repositories.GenericRepository
         Task<TEntity> FindByIdAsync(object id);
         bool Save();
         Task<bool> SaveAsync();
-
     }
 }
