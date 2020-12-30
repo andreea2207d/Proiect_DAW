@@ -40,14 +40,16 @@ namespace DAWProject.Services.EngagementService
             return _teamRepository.FindById(teamId);
         }
 
-        public void CreateTeam(TeamDto teamCreationDto)
+        public void CreateTeam(Team team)
         {
-            throw new NotImplementedException();
+            _teamRepository.Create(team);
+            _teamRepository.Save();
         }
 
-        public void EditTeam(TeamDto teamCreationDto)
+        public void EditTeam(Team team)
         {
-            throw new NotImplementedException();
+            _teamRepository.Update(team);
+            _teamRepository.Save();
         }
 
         public void DeleteTeam(Guid teamId)
@@ -79,14 +81,16 @@ namespace DAWProject.Services.EngagementService
             return _roleRepository.GetAllAsQuerable();
         }
 
-        public void CreateRole(RoleDto roleCreationDto)
+        public void CreateRole(Role role)
         {
-            throw new NotImplementedException();
+            _roleRepository.Create(role);
+            _roleRepository.Save();
         }
 
-        public void EditRole(RoleDto roleCreationDto)
+        public void EditRole(Role role)
         {
-            throw new NotImplementedException();
+            _roleRepository.Update(role);
+            _roleRepository.Save();
         }
 
         public void DeleteRole(Guid roleId)
@@ -95,20 +99,30 @@ namespace DAWProject.Services.EngagementService
             _roleRepository.Delete(role);
             _roleRepository.Save();
         }
+        
+        public void AssignRoleToUser(Guid userId, Guid roleId)
+        {
+            var user = _userRepository.FindById(userId);
+            user.RoleId = roleId;
+            _userRepository.Update(user);
+            _userRepository.Save();
+        }
 
         public IQueryable<Department> FindAlLDepartments()
         {
             return _departmentRepository.GetAllAsQuerable();
         }
 
-        public void CreateDepartment(DepartmentDto departmentDto)
+        public void CreateDepartment(Department department)
         {
-            throw new NotImplementedException();
+            _departmentRepository.Create(department);
+            _departmentRepository.Save();
         }
 
-        public void EditDepartment(DepartmentDto departmentDto)
+        public void EditDepartment(Department department)
         {
-            throw new NotImplementedException();
+            _departmentRepository.Update(department);
+            _departmentRepository.Save();
         }
 
         public void DeleteDepartment(Guid departmentId)
@@ -126,19 +140,21 @@ namespace DAWProject.Services.EngagementService
             _userRepository.Save();
         }
 
-        public IQueryable<Project> GetAllProjects()
+        public IQueryable<Project> FindAllProjects()
         {
             return _projectRepository.GetAllAsQuerable();
         }
 
-        public void CreateProject(ProjectDto projectDto)
+        public void CreateProject(Project project)
         {
-            throw new NotImplementedException();
+            _projectRepository.Create(project);
+            _projectRepository.Save();
         }
 
-        public void EditProject(ProjectDto projectDto)
+        public void EditProject(Project project)
         {
-            throw new NotImplementedException();
+            _projectRepository.Update(project);
+            _projectRepository.Save();
         }
 
         public void DeleteProject(Guid projectId)
