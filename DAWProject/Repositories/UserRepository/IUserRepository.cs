@@ -5,6 +5,6 @@ namespace DAWProject.Repositories.UserRepository
 {
     public interface IUserRepository: IGenericRepository<User>
     {
-        
+        User FindByCredentials(string modelUsername, string modelPassword);
     }
 }

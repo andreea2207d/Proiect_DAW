@@ -8,7 +8,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Security.Claims;
+using DAWProject.Controllers;
 using DAWProject.Helpers;
+using DAWProject.Repositories.UserRepository;
 using Microsoft.Extensions.Options;
 
 namespace DAWProject.Services.UserService
@@ -16,24 +18,17 @@ namespace DAWProject.Services.UserService
     public class UserService: IUserService
     {
         private readonly AppSettings _appSettings;
+        private readonly IUserRepository _userRepository;
 
-        private List<User> _users = new List<User>
+        public UserService(AppSettings appSettings, IUserRepository userRepository)
         {
-            new User {Id = new Guid(),
-            FirstName = "Test",
-            LastName = "User",
-            Username = "454",
-            Password = "test"
-            }
-        };
-        public UserService(IOptions<AppSettings> appSettings)
-        {
-            _appSettings = appSettings.Value;
+            _appSettings = appSettings;
+            _userRepository = userRepository;
         }
 
         public UserResponseDTO Authentificate(UserRequestDTO model)
         {
-            var user = _users.SingleOrDefault(x => x.Username == model.Username && x.Password == model.Password);
+            var user = _userRepository.FindByCredentials(model.Username, model.Password);
 
             if (user == null) return null;
 
@@ -55,6 +50,11 @@ namespace DAWProject.Services.UserService
 
             var token = tokenHandler.CreateToken(tokenDescriptor);
             return tokenHandler.WriteToken(token);
+        }
+
+        public void CreateUser(UserCreationDto dto)
+        {
+            throw new NotImplementedException();
         }
 
         public IEnumerable<User> GetAllUsers()

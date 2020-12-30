@@ -40,6 +40,15 @@ namespace DAWProject.Controllers
             var users = _userService.GetAllUsers();
             return Ok(users);
         }
+        
+        [HttpPost]
+        public IActionResult CreateUser(UserCreationDto userCreationDto)
+        {
+            _userService.CreateUser(userCreationDto);
+            return Ok();
+        }
 
     }
+
+    
 }

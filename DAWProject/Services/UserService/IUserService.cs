@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using DAWProject.Controllers;
 
 namespace DAWProject.Services.UserService
 {
@@ -13,5 +14,6 @@ namespace DAWProject.Services.UserService
         IEnumerable<User> GetAllUsers();
         User GetById(Guid id);
 
+        void CreateUser(UserCreationDto dto);
     }
 }
