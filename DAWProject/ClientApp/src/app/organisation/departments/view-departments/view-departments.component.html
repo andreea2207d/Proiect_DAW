@@ -1,0 +1,25 @@
+<li
+  class="nav-item"
+  [routerLinkActive]="['link-active']"
+  [routerLinkActiveOptions]="{ exact: true }"
+>
+  <a class="nav-link text-dark" [routerLink]="['/create-department']">Create Department</a>
+</li>
+<table class="table">
+  <thead>
+  <tr>
+    <th scope="col">Name</th>
+    <th scope="col">Actions</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let department of departments">
+    <td>{{department.name}}</td>
+    <td>
+      <app-edit-department [department]="selectedDepartment" (onSelectEdit)="onSelectEdit(department)"
+                           (onEdit)="onEdit()"></app-edit-department>
+      <button (click)="onDeleteDepartment(department)">Delete</button>
+    </td>
+  </tr>
+  </tbody>
+</table>
