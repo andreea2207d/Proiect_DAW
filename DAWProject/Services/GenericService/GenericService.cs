@@ -1,24 +1,16 @@
-﻿using DAWProject.Models;
-using DAWProject.Models.DTOs;
-using Microsoft.IdentityModel.Tokens;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
-using System.Security.Claims;
-using DAWProject.Helpers;
 using DAWProject.Repositories.GenericRepository;
-using Microsoft.Extensions.Options;
 
 namespace DAWProject.Services.GenericService
 {
-    public class GenericService<TEntity>: IGenericService<TEntity> where TEntity : class
+    public class GenericService<TEntity> : IGenericService<TEntity> where TEntity : class
     {
         private readonly IGenericRepository<TEntity> _repository;
-        
-        public GenericService(IGenericRepository<TEntity> repository)
+
+        protected GenericService(IGenericRepository<TEntity> repository)
         {
             _repository = repository;
         }
@@ -45,7 +37,7 @@ namespace DAWProject.Services.GenericService
 
         public TEntity Delete(TEntity entity)
         {
-            return  _repository.Delete(entity);
+            return _repository.Delete(entity);
         }
 
         public void CreateRange(IEnumerable<TEntity> entities)

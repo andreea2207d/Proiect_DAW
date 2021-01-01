@@ -1,11 +1,11 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { RouterModule } from '@angular/router';
+import {BrowserModule} from '@angular/platform-browser';
+import {NgModule} from '@angular/core';
+import {FormsModule} from '@angular/forms';
+import {HttpClientModule} from '@angular/common/http';
+import {RouterModule} from '@angular/router';
 
-import { AppComponent } from './app.component';
-import { NavMenuComponent } from './nav-menu/nav-menu.component';
+import {AppComponent} from './app.component';
+import {NavMenuComponent} from './nav-menu/nav-menu.component';
 import {HomeComponent} from "./home/home.component";
 import {LoginComponent} from "./organisation/login/login.component";
 import {CreateDepartmentComponent} from "./organisation/departments/create-department/create-department.component";
@@ -18,6 +18,8 @@ import {ViewProjectsComponent} from "./engagement/projects/view-projects/view-pr
 import {CreateProjectComponent} from "./engagement/projects/create-project/create-project.component";
 import {ViewTeamsComponent} from "./engagement/teams/view-teams/view-teams.component";
 import {CreateTeamComponent} from "./engagement/teams/create-team/create-team.component";
+import {OrganisationModule} from "./organisation/organisation.module";
+import {EngagementModule} from "./engagement/engagement.module";
 
 @NgModule({
   declarations: [
@@ -26,23 +28,26 @@ import {CreateTeamComponent} from "./engagement/teams/create-team/create-team.co
     HomeComponent
   ],
   imports: [
-    BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
+    BrowserModule.withServerTransition({appId: 'ng-cli-universal'}),
     HttpClientModule,
     FormsModule,
     RouterModule.forRoot([
-      { path: '', component: HomeComponent, pathMatch: 'full', canActivate: [AuthGuard] },
-      { path: 'login', component: LoginComponent, pathMatch: 'full', canActivate: [AuthGuard] },
-      { path: 'create-department', component: CreateDepartmentComponent, pathMatch: 'full', canActivate: [AuthGuard] },
-      { path: 'view-departments', component: ViewDepartmentsComponent, pathMatch: 'full', canActivate: [AuthGuard] },
-      { path: 'view-roles', component: ViewRolesComponent, pathMatch: 'full', canActivate: [AuthGuard] },
-      { path: 'create-role', component: CreateRoleComponent, pathMatch: 'full', canActivate: [AuthGuard] },
-      { path: 'view-projects', component: ViewProjectsComponent, pathMatch: 'full', canActivate: [AuthGuard] },
-      { path: 'create-project', component: CreateProjectComponent, pathMatch: 'full', canActivate: [AuthGuard] },
-      { path: 'view-teams', component: ViewTeamsComponent, pathMatch: 'full', canActivate: [AuthGuard] },
-      { path: 'create-team', component: CreateTeamComponent, pathMatch: 'full', canActivate: [AuthGuard] },
-    ])
+      {path: '', component: HomeComponent, pathMatch: 'full', canActivate: [AuthGuard]},
+      {path: 'login', component: LoginComponent, pathMatch: 'full', canActivate: [AuthGuard]},
+      {path: 'create-department', component: CreateDepartmentComponent, pathMatch: 'full', canActivate: [AuthGuard]},
+      {path: 'view-departments', component: ViewDepartmentsComponent, pathMatch: 'full', canActivate: [AuthGuard]},
+      {path: 'view-roles', component: ViewRolesComponent, pathMatch: 'full', canActivate: [AuthGuard]},
+      {path: 'create-role', component: CreateRoleComponent, pathMatch: 'full', canActivate: [AuthGuard]},
+      {path: 'view-projects', component: ViewProjectsComponent, pathMatch: 'full', canActivate: [AuthGuard]},
+      {path: 'create-project', component: CreateProjectComponent, pathMatch: 'full', canActivate: [AuthGuard]},
+      {path: 'view-teams', component: ViewTeamsComponent, pathMatch: 'full', canActivate: [AuthGuard]},
+      {path: 'create-team', component: CreateTeamComponent, pathMatch: 'full', canActivate: [AuthGuard]},
+    ]),
+    OrganisationModule,
+    EngagementModule
   ],
   providers: [AuthenticationService],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}

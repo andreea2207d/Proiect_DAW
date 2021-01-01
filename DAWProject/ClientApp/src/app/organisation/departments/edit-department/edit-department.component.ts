@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
 import {Department} from "../../models/Department";
 import {DepartmentsService} from "../departments.service";
 
@@ -10,7 +10,7 @@ import {DepartmentsService} from "../departments.service";
 export class EditDepartmentComponent implements OnInit {
   @Input() department: Department;
   // @ts-ignore
-  @ViewChild('closeBtn') closeButton: ElementRef;
+  @ViewChild('closeButton') closeButton: ElementRef;
   @Output() onSelectEdit: EventEmitter<any> = new EventEmitter();
   @Output() onEdit: EventEmitter<any> = new EventEmitter();
 

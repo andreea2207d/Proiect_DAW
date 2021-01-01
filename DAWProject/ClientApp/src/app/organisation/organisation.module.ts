@@ -19,7 +19,8 @@ import {DepartmentsService} from "./departments/departments.service";
     FormsModule,
     RouterModule
   ],
-  providers: [RoleService, DepartmentsService]
+  providers: [RoleService, DepartmentsService],
+  exports: [LoginComponent, ViewDepartmentsComponent, CreateDepartmentComponent, EditDepartmentComponent, ViewRolesComponent, CreateRoleComponent, EditRoleComponent],
 })
 export class OrganisationModule {
 }

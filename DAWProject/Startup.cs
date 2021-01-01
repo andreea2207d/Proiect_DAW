@@ -1,9 +1,12 @@
 using DAWProject.Data;
 using DAWProject.Helpers;
+using DAWProject.Repositories.ContractRepository;
 using DAWProject.Repositories.DepartmentRepository;
 using DAWProject.Repositories.ProjectRepository;
 using DAWProject.Repositories.RoleRepository;
 using DAWProject.Repositories.TeamRepository;
+using DAWProject.Repositories.UserProjectRepository;
+using DAWProject.Repositories.UserRepository;
 using DAWProject.Services.EngagementService;
 using DAWProject.Services.OrganizationService;
 using DAWProject.Services.UserService;
@@ -14,6 +17,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Newtonsoft.Json;
 
 namespace DAWProject
 {
@@ -31,17 +35,19 @@ namespace DAWProject
         {
             services.AddControllersWithViews();
             // In production, the Angular files will be served from this directory
-            services.AddSpaStaticFiles(configuration =>
-            {
-                configuration.RootPath = "ClientApp/dist";
-            });
-            services.AddDbContext<DawAppContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            services.AddSpaStaticFiles(configuration => { configuration.RootPath = "ClientApp/dist"; });
+            services.AddDbContext<DawAppContext>(options =>
+                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
+            services.AddControllersWithViews()
+                .AddNewtonsoftJson(options =>
+                    options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+                );
 
             services.Configure<AppSettings>(Configuration.GetSection("AppSettings"));
-            services.AddSingleton<IUserService, UserService>();
-            services.AddSingleton<IEngagementService, EngagementService>();
-            services.AddSingleton<IOrganizationService, OrganizationService>();
+            services.AddScoped<IUserService, UserService>();
+            services.AddScoped<IEngagementService, EngagementService>();
+            services.AddScoped<IOrganizationService, OrganizationService>();
 
             // Repositories
 
@@ -50,10 +56,13 @@ namespace DAWProject
             // services.AddSingleton
             // Created once per client request
             // services.AddScoped
-            services.AddSingleton<IProjectRepository, ProjectRepository>();
-            services.AddSingleton<ITeamRepository, TeamRepository>();
-            services.AddSingleton<IDepartmentRepository, DepartmentRepository>();
-            services.AddSingleton<IRoleRepository, RoleRepository>();
+            services.AddTransient<IProjectRepository, ProjectRepository>();
+            services.AddTransient<ITeamRepository, TeamRepository>();
+            services.AddTransient<IDepartmentRepository, DepartmentRepository>();
+            services.AddTransient<IRoleRepository, RoleRepository>();
+            services.AddTransient<IUserProjectRepository, UserProjectRepository>();
+            services.AddTransient<IUserRepository, UserRepository>();
+            services.AddTransient<IContractRepository, ContractRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -72,10 +81,7 @@ namespace DAWProject
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-            if (!env.IsDevelopment())
-            {
-                app.UseSpaStaticFiles();
-            }
+            if (!env.IsDevelopment()) app.UseSpaStaticFiles();
 
             app.UseRouting();
             app.UseMiddleware<JWTMiddleware>();
@@ -84,8 +90,8 @@ namespace DAWProject
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
-                    name: "default",
-                    pattern: "{controller}/{action=Index}/{id?}");
+                    "default",
+                    "{controller}/{action=Index}/{id?}");
             });
 
             app.UseSpa(spa =>
@@ -95,10 +101,7 @@ namespace DAWProject
 
                 spa.Options.SourcePath = "ClientApp";
 
-                if (env.IsDevelopment())
-                {
-                    spa.UseAngularCliServer(npmScript: "start");
-                }
+                if (env.IsDevelopment()) spa.UseAngularCliServer("start");
             });
         }
     }
