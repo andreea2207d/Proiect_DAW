@@ -30,8 +30,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="ClientApp\src\app\engagement\projects" />
-    <Folder Include="ClientApp\src\app\engagement\teams" />
     <Folder Include="ClientApp\src\app\organisation\departments" />
     <Folder Include="ClientApp\src\app\organisation\roles" />
     <Folder Include="Services\" />

@@ -19,7 +19,7 @@ export class CreateDepartmentComponent implements OnInit {
 
   onCreate() {
     this.departmentService.createDepartment(this.department).subscribe(_ => {
-      this.router.navigateByUrl('/departments')
+      this.router.navigateByUrl('/view-departments')
     })
   }
 }

@@ -13,6 +13,11 @@ import {ViewDepartmentsComponent} from "./organisation/departments/view-departme
 import {AuthGuard} from "./organisation/auth.guard";
 import {AuthenticationService} from "./organisation/authentication.service";
 import {ViewRolesComponent} from "./organisation/roles/view-roles/view-roles.component";
+import {CreateRoleComponent} from "./organisation/roles/create-role/create-role.component";
+import {ViewProjectsComponent} from "./engagement/projects/view-projects/view-projects.component";
+import {CreateProjectComponent} from "./engagement/projects/create-project/create-project.component";
+import {ViewTeamsComponent} from "./engagement/teams/view-teams/view-teams.component";
+import {CreateTeamComponent} from "./engagement/teams/create-team/create-team.component";
 
 @NgModule({
   declarations: [
@@ -30,6 +35,11 @@ import {ViewRolesComponent} from "./organisation/roles/view-roles/view-roles.com
       { path: 'create-department', component: CreateDepartmentComponent, pathMatch: 'full', canActivate: [AuthGuard] },
       { path: 'view-departments', component: ViewDepartmentsComponent, pathMatch: 'full', canActivate: [AuthGuard] },
       { path: 'view-roles', component: ViewRolesComponent, pathMatch: 'full', canActivate: [AuthGuard] },
+      { path: 'create-role', component: CreateRoleComponent, pathMatch: 'full', canActivate: [AuthGuard] },
+      { path: 'view-projects', component: ViewProjectsComponent, pathMatch: 'full', canActivate: [AuthGuard] },
+      { path: 'create-project', component: CreateProjectComponent, pathMatch: 'full', canActivate: [AuthGuard] },
+      { path: 'view-teams', component: ViewTeamsComponent, pathMatch: 'full', canActivate: [AuthGuard] },
+      { path: 'create-team', component: CreateTeamComponent, pathMatch: 'full', canActivate: [AuthGuard] },
     ])
   ],
   providers: [AuthenticationService],

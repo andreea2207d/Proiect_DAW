@@ -2,7 +2,7 @@ using System;
 using System.Linq;
 using DAWProject.Models;
 using DAWProject.Models.DTOs;
-using DAWProject.Services.EngagementService;
+using DAWProject.Services.OrganizationService;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DAWProject.Controllers
@@ -11,44 +11,44 @@ namespace DAWProject.Controllers
     [ApiController]
     public class RolesController : ControllerBase
     {
-        private readonly IEngagementService _engagementService;
+        private readonly IOrganizationService _organizationService;
 
-        public RolesController(IEngagementService engagementService)
+        public RolesController(IOrganizationService organizationService)
         {
-            _engagementService = engagementService;
+            _organizationService = organizationService;
         }
 
         [HttpGet]
         public IActionResult GetAllRoles()
         {
-            return Ok(_engagementService.FindAllRoles().ToList());
+            return Ok(_organizationService.FindAllRoles().ToList());
         }
         
         [HttpPost]
         public IActionResult CreateRole(Role role)
         {
-            _engagementService.CreateRole(role);
+            _organizationService.CreateRole(role);
             return Ok();
         }
         
         [HttpPut]
         public IActionResult EditRole(Role role)
         {
-            _engagementService.EditRole(role);
+            _organizationService.EditRole(role);
             return Ok();
         }
         
         [HttpDelete("{id}")]
         public IActionResult DeleteRole(Guid roleId)
         {
-            _engagementService.DeleteRole(roleId);
+            _organizationService.DeleteRole(roleId);
             return Ok();
         }
         
         [HttpPost("assign/user")]
         public IActionResult AssignRoleToUser(RoleAssignmentDto roleAssignmentDto)
         {
-            _engagementService.AssignRoleToUser(roleAssignmentDto.UserId,
+            _organizationService.AssignRoleToUser(roleAssignmentDto.UserId,
                 roleAssignmentDto.RoleId);
             return Ok();
         }

@@ -1,14 +1,14 @@
 <!-- Button trigger modal -->
-<button (click)="onSelectEditButtonClick()" type="button" class="btn btn-primary" data-toggle="modal" data-target="#editDepartmentModal">
+<button (click)="onSelectEditButtonClick()" type="button" class="btn btn-primary" data-toggle="modal" data-target="#editTicketTypeModal">
   Edit Ticket
 </button>
 
 <!-- Modal -->
-<div class="modal fade" id="editDepartmentModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="editProjectModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 *ngIf="department" class="modal-title" id="exampleModalLabel">Edit {{department.name}}</h5>
+        <h5 *ngIf="project" class="modal-title" id="exampleModalLabel">Edit {{project.name}}</h5>
         <button #closeBtn type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -17,8 +17,8 @@
         <form class="form-login">
           <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
 
-          <label for="inputDepartmentName" class="sr-only">Username</label>
-          <input *ngIf="department" [(ngModel)]="department.name" name="departmentName" type="text" id="inputDepartmentName" class="form-control"
+          <label for="inputProjectName" class="sr-only">Username</label>
+          <input *ngIf="project" [(ngModel)]="project.name" name="projectName" type="text" id="inputProjectName" class="form-control"
                  placeholder="Username" required autofocus>
         </form>
       </div>

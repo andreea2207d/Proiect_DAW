@@ -1,0 +1,8 @@
+<form class="form-login">
+  <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+
+  <label for="inputTeamName" class="sr-only">Team Name</label>
+  <input [(ngModel)]="team.name" name="teamName" type="text" id="inputTeamName" class="form-control"
+         placeholder="Username" required autofocus>
+  <button class="btn btn-lg btn-primary btn-block" type="submit" (click)="onCreate()">Create</button>
+</form>

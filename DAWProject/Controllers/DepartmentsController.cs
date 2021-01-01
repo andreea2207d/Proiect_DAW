@@ -2,7 +2,7 @@ using System;
 using System.Linq;
 using DAWProject.Models;
 using DAWProject.Models.DTOs;
-using DAWProject.Services.EngagementService;
+using DAWProject.Services.OrganizationService;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DAWProject.Controllers
@@ -11,44 +11,44 @@ namespace DAWProject.Controllers
     [ApiController]
     public class DepartmentsController : ControllerBase
     {
-        private readonly IEngagementService _engagementService;
+        private readonly IOrganizationService _organizationService;
 
-        public DepartmentsController(IEngagementService engagementService)
+        public DepartmentsController(IOrganizationService organizationService)
         {
-            _engagementService = engagementService;
+            _organizationService = organizationService;
         }
 
         [HttpGet]
         public IActionResult GetAllDepartments()
         {
-            return Ok(_engagementService.FindAlLDepartments().ToList());
+            return Ok(_organizationService.FindAlLDepartments().ToList());
         }
         
         [HttpPost]
         public IActionResult CreateDepartment(Department department)
         {
-            _engagementService.CreateDepartment(department);
+            _organizationService.CreateDepartment(department);
             return Ok();
         }
         
         [HttpPut]
         public IActionResult EditDepartment(Department department)
         {
-            _engagementService.EditDepartment(department);
+            _organizationService.EditDepartment(department);
             return Ok();
         }
         
         [HttpDelete("{id}")]
         public IActionResult DeleteDepartment(Guid departmentId)
         {
-            _engagementService.DeleteDepartment(departmentId);
+            _organizationService.DeleteDepartment(departmentId);
             return Ok();
         }
         
         [HttpPost("assign/user")]
         public IActionResult AssignUserToDepartment(DepartmentAssignmentDto departmentAssignmentDto)
         {
-            _engagementService.AssignUserToDepartment(departmentAssignmentDto.UserId, departmentAssignmentDto.DepartmentId);
+            _organizationService.AssignUserToDepartment(departmentAssignmentDto.UserId, departmentAssignmentDto.DepartmentId);
             return Ok();
         }
     }

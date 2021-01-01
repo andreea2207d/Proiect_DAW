@@ -1,5 +1,11 @@
 using DAWProject.Data;
 using DAWProject.Helpers;
+using DAWProject.Repositories.DepartmentRepository;
+using DAWProject.Repositories.ProjectRepository;
+using DAWProject.Repositories.RoleRepository;
+using DAWProject.Repositories.TeamRepository;
+using DAWProject.Services.EngagementService;
+using DAWProject.Services.OrganizationService;
 using DAWProject.Services.UserService;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -33,7 +39,9 @@ namespace DAWProject
 
 
             services.Configure<AppSettings>(Configuration.GetSection("AppSettings"));
-            services.AddScoped<IUserService, UserService>();
+            services.AddSingleton<IUserService, UserService>();
+            services.AddSingleton<IEngagementService, EngagementService>();
+            services.AddSingleton<IOrganizationService, OrganizationService>();
 
             // Repositories
 
@@ -42,8 +50,10 @@ namespace DAWProject
             // services.AddSingleton
             // Created once per client request
             // services.AddScoped
-            
-
+            services.AddSingleton<IProjectRepository, ProjectRepository>();
+            services.AddSingleton<ITeamRepository, TeamRepository>();
+            services.AddSingleton<IDepartmentRepository, DepartmentRepository>();
+            services.AddSingleton<IRoleRepository, RoleRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

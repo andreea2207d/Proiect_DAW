@@ -14,17 +14,13 @@ namespace DAWProject.Services.EngagementService
     public class EngagementService: IEngagementService
     {
         private readonly ITeamRepository _teamRepository;
-        private readonly IRoleRepository _roleRepository;
-        private readonly IDepartmentRepository _departmentRepository;
         private readonly IProjectRepository _projectRepository;
         private readonly IUserRepository _userRepository;
         private readonly IUserProjectRepository _userProjectRepository;
 
-        public EngagementService(ITeamRepository teamRepository, IRoleRepository roleRepository, IDepartmentRepository departmentRepository, IProjectRepository projectRepository, IUserRepository userRepository, IUserProjectRepository userProjectRepository)
+        public EngagementService(ITeamRepository teamRepository, IProjectRepository projectRepository, IUserRepository userRepository, IUserProjectRepository userProjectRepository)
         {
             _teamRepository = teamRepository;
-            _roleRepository = roleRepository;
-            _departmentRepository = departmentRepository;
             _projectRepository = projectRepository;
             _userRepository = userRepository;
             _userProjectRepository = userProjectRepository;
@@ -76,69 +72,7 @@ namespace DAWProject.Services.EngagementService
             _teamRepository.Save();
         }
 
-        public IQueryable<Role> FindAllRoles()
-        {
-            return _roleRepository.GetAllAsQuerable();
-        }
-
-        public void CreateRole(Role role)
-        {
-            _roleRepository.Create(role);
-            _roleRepository.Save();
-        }
-
-        public void EditRole(Role role)
-        {
-            _roleRepository.Update(role);
-            _roleRepository.Save();
-        }
-
-        public void DeleteRole(Guid roleId)
-        {
-            var role = _roleRepository.FindById(roleId);
-            _roleRepository.Delete(role);
-            _roleRepository.Save();
-        }
         
-        public void AssignRoleToUser(Guid userId, Guid roleId)
-        {
-            var user = _userRepository.FindById(userId);
-            user.RoleId = roleId;
-            _userRepository.Update(user);
-            _userRepository.Save();
-        }
-
-        public IQueryable<Department> FindAlLDepartments()
-        {
-            return _departmentRepository.GetAllAsQuerable();
-        }
-
-        public void CreateDepartment(Department department)
-        {
-            _departmentRepository.Create(department);
-            _departmentRepository.Save();
-        }
-
-        public void EditDepartment(Department department)
-        {
-            _departmentRepository.Update(department);
-            _departmentRepository.Save();
-        }
-
-        public void DeleteDepartment(Guid departmentId)
-        {
-            var department = _departmentRepository.FindById(departmentId);
-            _departmentRepository.Delete(department);
-            _departmentRepository.Save();
-        }
-
-        public void AssignUserToDepartment(Guid userId, Guid departmentId)
-        {
-            var user = _userRepository.FindById(userId);
-            user.DepartmentId = departmentId;
-            _userRepository.Update(user);
-            _userRepository.Save();
-        }
 
         public IQueryable<Project> FindAllProjects()
         {
