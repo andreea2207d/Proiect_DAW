@@ -1,18 +1,25 @@
 <app-create-role (onCreate)="onCreated()"></app-create-role>
+<li
+  class="nav-item"
+  [routerLinkActive]="['link-active']"
+  [routerLinkActiveOptions]="{ exact: true }"
+>
+  <a class="nav-link text-dark" [routerLink]="['/assign-role']">Assign Role To User</a>
+</li>
 <table class="table">
   <thead>
   <tr>
-    <th scope="col">Id</th>
-    <th scope="col">Service Name</th>
+    <th scope="col">Role Id</th>
+    <th scope="col">Role Designation</th>
     <th scope="col">Actions</th>
   </tr>
   </thead>
   <tbody>
   <tr *ngFor="let role of roles">
-    <th scope="row">{{role.id}}</th>
+    <td>{{role.id}}</td>
     <td>{{role.designation}}</td>
     <td>
-      <app-edit-role (onEdit)="onEdited()" (onDelete)="onDeleted()" (onSelectEdit)="onSelectTicketType(role)"
+      <app-edit-role (onEdit)="onEdited()" (onDelete)="onDeleted()" (onSelectEdit)="onSelectRole(role)"
                             [role]="selectedRole"></app-edit-role>
     </td>
   </tr>

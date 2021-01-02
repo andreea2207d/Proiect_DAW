@@ -20,7 +20,11 @@ export class ViewProjectsComponent implements OnInit {
   }
 
   onDeleteProject(project: Project) {
-    this.projectsService.deleteProject(project.id)
+    this.projectsService.deleteProject(project.id).subscribe(_ => {
+      this.projectsService.getAllProjects().subscribe(projects => {
+        this.projects = projects
+      })
+    })
   }
 
   onEdit() {

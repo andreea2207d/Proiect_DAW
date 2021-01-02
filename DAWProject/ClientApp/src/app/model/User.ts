@@ -12,6 +12,17 @@ export class User {
   team: Team;
 }
 
+export class UserCreation {
+  id: string;
+  firstName: string;
+  lastName: string;
+  username: string;
+  password: string;
+  role: Role;
+  department: Department;
+  team: Team;
+}
+
 export class UserSession {
   id: string;
   firstName: string;
@@ -23,7 +34,7 @@ export class UserSession {
 export class UserLogin {
   username: string;
   password: string;
-  constructor(username: string, password: string) {
+  constructor(username?: string, password?: string) {
     this.username = username;
     this.password = password;
   }

@@ -5,19 +5,28 @@
 >
   <a class="nav-link text-dark" [routerLink]="['/create-team']">Create Team</a>
 </li>
+<li
+  class="nav-item"
+  [routerLinkActive]="['link-active']"
+  [routerLinkActiveOptions]="{ exact: true }"
+>
+  <a class="nav-link text-dark" [routerLink]="['/assign-team']">Assign User To Team</a>
+</li>
 <table class="table">
   <thead>
   <tr>
+    <th scope="col">Id</th>
     <th scope="col">Name</th>
     <th scope="col">Actions</th>
   </tr>
   </thead>
   <tbody>
   <tr *ngFor="let team of teams">
+    <td>{{team.id}}</td>
     <td>{{team.name}}</td>
     <td>
       <app-edit-team [team]="selectedTeam" (onSelectEdit)="onSelectEdit(team)"
-                           (onEdit)="onEdit()"></app-edit-team>
+                           (onEdit)="onEditFinished()"></app-edit-team>
       <button (click)="onDeleteTeam(team)">Delete</button>
     </td>
   </tr>

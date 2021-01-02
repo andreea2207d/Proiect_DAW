@@ -1,0 +1,25 @@
+<div class="dropdown">
+  <button class="btn btn-secondary dropdown-toggle" type="button" id="usersDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    {{ selectedUser ? selectedUser.username : 'Users' }}
+  </button>
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+    <a class="dropdown-item" *ngFor="let user of users"
+      (click)="selectUser(user)">
+      {{user.username}}
+    </a>
+  </div>
+</div>
+
+<div class="dropdown">
+  <button class="btn btn-secondary dropdown-toggle" type="button" id="projectsDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    {{ selectedProject ? selectedProject.name : 'Projects' }}
+  </button>
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+    <a class="dropdown-item" *ngFor="let project of projects"
+       (click)="selectProject(project)">
+      {{project.name}}
+    </a>
+  </div>
+</div>
+
+<button (click)="assignUserToProject()">Assign User To Project</button>

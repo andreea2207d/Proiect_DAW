@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DAWProject.Migrations
 {
     [DbContext(typeof(DawAppContext))]
-    [Migration("20201230174849_FixTeamLeadId")]
-    partial class FixTeamLeadId
+    [Migration("20210102170204_InitialSetup")]
+    partial class InitialSetup
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -29,9 +29,6 @@ namespace DAWProject.Migrations
 
                     b.Property<int>("ContractNumber")
                         .HasColumnType("int");
-
-                    b.Property<DateTime>("CreationDate")
-                        .HasColumnType("datetime2");
 
                     b.Property<DateTime?>("DateCreated")
                         .ValueGeneratedOnAdd()
@@ -153,7 +150,7 @@ namespace DAWProject.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid>("TeamLeaderId")
+                    b.Property<Guid?>("TeamLeaderId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("TeamLeaderId1")
@@ -180,7 +177,7 @@ namespace DAWProject.Migrations
                         .ValueGeneratedOnAddOrUpdate()
                         .HasColumnType("datetime2");
 
-                    b.Property<Guid>("DepartmentId")
+                    b.Property<Guid?>("DepartmentId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("FirstName")
@@ -192,10 +189,10 @@ namespace DAWProject.Migrations
                     b.Property<string>("Password")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid>("RoleId")
+                    b.Property<Guid?>("RoleId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("TeamId")
+                    b.Property<Guid?>("TeamId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Username")
@@ -229,9 +226,7 @@ namespace DAWProject.Migrations
                 {
                     b.HasOne("DAWProject.Models.User", "Employee")
                         .WithOne("Contract")
-                        .HasForeignKey("DAWProject.Models.Contract", "EmployeeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("DAWProject.Models.Contract", "EmployeeId");
                 });
 
             modelBuilder.Entity("DAWProject.Models.Team", b =>
@@ -245,21 +240,15 @@ namespace DAWProject.Migrations
                 {
                     b.HasOne("DAWProject.Models.Department", "Department")
                         .WithMany("Employees")
-                        .HasForeignKey("DepartmentId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("DepartmentId");
 
                     b.HasOne("DAWProject.Models.Role", "Role")
                         .WithMany("Users")
-                        .HasForeignKey("RoleId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("RoleId");
 
                     b.HasOne("DAWProject.Models.Team", "Team")
                         .WithMany("Employees")
-                        .HasForeignKey("TeamId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("TeamId");
                 });
 
             modelBuilder.Entity("DAWProject.Models.UserProject", b =>

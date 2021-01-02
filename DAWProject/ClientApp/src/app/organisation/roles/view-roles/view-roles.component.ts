@@ -3,7 +3,7 @@ import {Role} from "../../models/Role";
 import {RoleService} from "../role.service";
 
 @Component({
-  selector: 'app-view-ticket-types',
+  selector: 'app-view-roles',
   templateUrl: './view-roles.component.html',
   styleUrls: ['./view-roles.component.css']
 })
@@ -19,7 +19,7 @@ export class ViewRolesComponent implements OnInit {
     })
   }
 
-  onSelectTicketType(role: Role) {
+  onSelectRole(role: Role) {
     this.selectedRole = role
   }
 

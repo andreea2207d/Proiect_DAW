@@ -3,7 +3,7 @@
     class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3"
   >
     <div class="container">
-      <a class="navbar-brand" [routerLink]="['/']">DAWProject</a>
+      <h4>Welcome<span *ngIf="isUserLoggedIn()" appUsername>, {{username}}</span></h4>
       <button
         class="navbar-toggler"
         type="button"
@@ -20,31 +20,49 @@
         [ngClass]="{ show: isExpanded }"
       >
         <ul class="navbar-nav flex-grow">
-          <li
+          <li *ngIf="isUserLoggedIn()"
             class="nav-item"
             [routerLinkActive]="['link-active']"
             [routerLinkActiveOptions]="{ exact: true }"
           >
             <a class="nav-link text-dark" [routerLink]="['/']">Home</a>
           </li>
-          <li class="nav-item" [routerLinkActive]="['link-active']">
+          <li *ngIf="isUserLoggedIn()" class="nav-item" [routerLinkActive]="['link-active']">
             <a class="nav-link text-dark" [routerLink]="['/view-departments']"
               >Departments</a
             >
           </li>
-          <li class="nav-item" [routerLinkActive]="['link-active']">
+          <li *ngIf="isUserLoggedIn()" class="nav-item" [routerLinkActive]="['link-active']">
             <a class="nav-link text-dark" [routerLink]="['/view-roles']"
             >Roles</a
             >
           </li>
-          <li class="nav-item" [routerLinkActive]="['link-active']">
+          <li *ngIf="isUserLoggedIn()" class="nav-item" [routerLinkActive]="['link-active']">
             <a class="nav-link text-dark" [routerLink]="['/view-teams']"
             >Teams</a
             >
           </li>
-          <li class="nav-item" [routerLinkActive]="['link-active']">
+          <li *ngIf="isUserLoggedIn()" class="nav-item" [routerLinkActive]="['link-active']">
             <a class="nav-link text-dark" [routerLink]="['/view-projects']"
             >Projects</a
+            >
+          </li>
+
+          <li *ngIf="isUserLoggedIn()" class="nav-item" [routerLinkActive]="['link-active']">
+            <a class="nav-link text-dark" [routerLink]="['/create-user']"
+            >Create User Entry</a
+            >
+          </li>
+
+          <li *ngIf="isUserLoggedIn()" class="nav-item" [routerLinkActive]="['link-active']">
+            <a class="nav-link text-dark" (click)="logout()"
+            >Log out</a
+            >
+          </li>
+
+          <li *ngIf="!isUserLoggedIn()" class="nav-item" [routerLinkActive]="['link-active']">
+            <a class="nav-link text-dark" (click)="logout()" [routerLink]="['/login']"
+            >Log In</a
             >
           </li>
         </ul>

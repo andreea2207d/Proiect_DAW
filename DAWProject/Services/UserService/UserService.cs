@@ -6,6 +6,7 @@ using System.Text;
 using DAWProject.Helpers;
 using DAWProject.Models;
 using DAWProject.Models.DTOs;
+using DAWProject.Repositories.ContractRepository;
 using DAWProject.Repositories.UserRepository;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
@@ -16,11 +17,13 @@ namespace DAWProject.Services.UserService
     {
         private readonly AppSettings _appSettings;
         private readonly IUserRepository _userRepository;
+        private readonly IContractRepository _contractRepository;
 
-        public UserService(IOptions<AppSettings> appSettings, IUserRepository userRepository)
+        public UserService(IOptions<AppSettings> appSettings, IUserRepository userRepository, IContractRepository contractRepository)
         {
             _appSettings = appSettings.Value;
             _userRepository = userRepository;
+            _contractRepository = contractRepository;
         }
 
         public UserResponseDTO Authentificate(UserRequestDTO model)
@@ -36,7 +39,7 @@ namespace DAWProject.Services.UserService
 
         public void CreateUser(UserCreationDto dto)
         {
-            _userRepository.Create(new User
+            var newUser = _userRepository.Create(new User
             {
                 DateCreated = DateTime.Now,
                 DateModified = DateTime.Now,
@@ -48,6 +51,17 @@ namespace DAWProject.Services.UserService
                 TeamId = dto.TeamId,
                 DepartmentId = dto.DepartmentId
             });
+            _userRepository.Save();
+            if (dto.ContractStartDate == null || dto.ContractEndDate == null) return;
+            _contractRepository.Create(new Contract
+            {
+                EmployeeId = newUser.Id,
+                ContractNumber = new Random().Next(),
+                DateCreated = DateTime.Now,
+                StartTime = dto.ContractStartDate.Value,
+                EndDateTime = dto.ContractEndDate.Value
+            });
+            _contractRepository.Save();
         }
 
         public IEnumerable<User> GetAllUsers()

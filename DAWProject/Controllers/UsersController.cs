@@ -32,8 +32,7 @@ namespace DAWProject.Controllers
             }
             return Ok(result);
         }
-
-        [Authorize]
+        
         [HttpGet]
         public IActionResult GetAll()
         {

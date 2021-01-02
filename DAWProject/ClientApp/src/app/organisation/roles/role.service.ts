@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {Role} from "../models/Role";
+import {Role, RoleAssignment} from "../models/Role";
 import {BaseService} from "../BaseService";
 
 @Injectable({
@@ -16,10 +16,14 @@ export class RoleService extends BaseService {
   }
 
   updateRole(role: Role) {
-    return this.http.post(`${this.baseUrl}api/roles`, role)
+    return this.http.put(`${this.baseUrl}api/roles`, role)
   }
 
   deleteRole(id: any) {
     return this.http.delete(`${this.baseUrl}api/roles/${id}`)
+  }
+
+  assignUser(roleAssignment: RoleAssignment) {
+    return this.http.post(`${this.baseUrl}api/roles/assign/user`, roleAssignment)
   }
 }

@@ -44,7 +44,7 @@ namespace DAWProject.Controllers
             return Ok();
         }
         
-        [HttpDelete("{id}")]
+        [HttpDelete("{teamId}")]
         public IActionResult DeleteTeam(Guid teamId)
         {
             _engagementService.DeleteTeam(teamId);

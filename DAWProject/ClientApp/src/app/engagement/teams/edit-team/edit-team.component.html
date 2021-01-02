@@ -1,24 +1,25 @@
 <!-- Button trigger modal -->
-<button (click)="onSelectEditButtonClick()" type="button" class="btn btn-primary" data-toggle="modal" data-target="#editTicketTypeModal">
-  Edit Ticket
+<button (click)="onSelectEditButtonClick()" type="button" class="btn btn-primary" data-toggle="modal"
+        data-target="#editTeamModal">
+  Edit Team
 </button>
 
 <!-- Modal -->
-<div class="modal fade" id="editTeamModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="editTeamModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 *ngIf="team" class="modal-title" id="exampleModalLabel">Edit {{team.name}}</h5>
+        <h5 *ngIf="team" class="modal-title" id="exampleModalLabel">Edit Team: {{team.name}}</h5>
         <button #closeButton aria-label="Close" class="close" data-dismiss="modal" type="button">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
         <form class="form-login">
-          <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
-
           <label for="inputTeamName" class="sr-only">Username</label>
-          <input *ngIf="team" [(ngModel)]="team.name" name="teamName" type="text" id="inputTeamName" class="form-control"
+          <input *ngIf="team" [(ngModel)]="team.name" name="teamName" type="text" id="inputTeamName"
+                 class="form-control"
                  placeholder="Username" required autofocus>
         </form>
       </div>

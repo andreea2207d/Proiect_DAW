@@ -19,7 +19,7 @@ export class CreateTeamComponent implements OnInit {
 
   onCreate() {
     this.teamService.createTeam(this.team).subscribe(_ => {
-      this.router.navigateByUrl('/teams')
+      this.router.navigateByUrl('/view-teams')
     })
   }
 }

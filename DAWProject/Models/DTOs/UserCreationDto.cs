@@ -9,10 +9,10 @@ namespace DAWProject.Models.DTOs
         public string LastName { get; set; }
         public string Username { get; set; }
         public string Password { get; set; }
-        private DateTime ContractStartDate { get; set; }
-        private DateTime ContractEndDate { get; set; }
-        public Guid RoleId { get; set; }
-        public Guid TeamId { get; set; }
-        public Guid DepartmentId { get; set; }
+        public DateTime? ContractStartDate { get; set; }
+        public DateTime? ContractEndDate { get; set; }
+        public Guid? RoleId { get; set; }
+        public Guid? TeamId { get; set; }
+        public Guid? DepartmentId { get; set; }
     }
 }

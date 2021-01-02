@@ -1,0 +1,21 @@
+<form class="form-create-login">
+  <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+
+  <label for="inputFirstName" class="sr-only">First Name</label>
+  <input *ngIf="user" [(ngModel)]="user.firstName" name="username" type="text" id="inputFirstName" class="form-control"
+         placeholder="First Name" required autofocus>
+
+  <label for="inputLastName" class="sr-only">Last Name</label>
+  <input *ngIf="user" [(ngModel)]="user.lastName" name="username" type="text" id="inputLastName" class="form-control"
+         placeholder="Last Name" required autofocus>
+
+  <label for="inputUsername" class="sr-only">Username</label>
+  <input *ngIf="user" [(ngModel)]="user.username" name="username" type="text" id="inputUsername" class="form-control"
+         placeholder="Username" required autofocus>
+
+  <label for="inputPassword" class="sr-only">Password</label>
+  <input *ngIf="user" [(ngModel)]="user.password" name="password" type="password" id="inputPassword" class="form-control"
+         placeholder="Password" required>
+
+  <button class="btn btn-lg btn-primary btn-block" type="submit" (click)="onCreate()">Create User</button>
+</form>

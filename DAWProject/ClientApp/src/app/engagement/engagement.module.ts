@@ -10,10 +10,12 @@ import {ViewProjectsComponent} from "./projects/view-projects/view-projects.comp
 import {FormsModule} from "@angular/forms";
 import {RouterModule} from "@angular/router";
 import {ProjectService} from "./projects/project.service";
+import {AssignProjectComponent} from "./projects/assign-project/assign-project.component";
+import {AssignTeamComponent} from "./teams/assign-team/assign-team.component";
 
 
 @NgModule({
-  declarations: [ViewTeamsComponent, EditTeamComponent, CreateTeamComponent, CreateProjectComponent, EditProjectComponent, ViewProjectsComponent],
+  declarations: [ViewTeamsComponent, EditTeamComponent, CreateTeamComponent, CreateProjectComponent, EditProjectComponent, ViewProjectsComponent, AssignProjectComponent, AssignTeamComponent],
   imports: [
     CommonModule,
     FormsModule,

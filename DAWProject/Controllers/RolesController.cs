@@ -38,7 +38,7 @@ namespace DAWProject.Controllers
             return Ok();
         }
         
-        [HttpDelete("{id}")]
+        [HttpDelete("{roleId}")]
         public IActionResult DeleteRole(Guid roleId)
         {
             _organizationService.DeleteRole(roleId);

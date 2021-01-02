@@ -19,7 +19,7 @@ export class CreateProjectComponent implements OnInit {
 
   onCreate() {
     this.projectService.createProject(this.project).subscribe(_ => {
-      this.router.navigateByUrl('/projects')
+      this.router.navigateByUrl('/view-projects')
     })
   }
 }

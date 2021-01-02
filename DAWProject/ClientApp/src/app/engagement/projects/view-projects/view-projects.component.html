@@ -5,6 +5,13 @@
 >
   <a class="nav-link text-dark" [routerLink]="['/create-project']">Create Project</a>
 </li>
+<li
+  class="nav-item"
+  [routerLinkActive]="['link-active']"
+  [routerLinkActiveOptions]="{ exact: true }"
+>
+  <a class="nav-link text-dark" [routerLink]="['/assign-project']">Assign User To Project</a>
+</li>
 <table class="table">
   <thead>
   <tr>

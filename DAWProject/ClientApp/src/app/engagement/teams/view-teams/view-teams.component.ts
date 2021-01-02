@@ -14,22 +14,27 @@ export class ViewTeamsComponent implements OnInit {
   constructor(private teamsService: TeamService) { }
 
   ngOnInit() {
-    this.teamsService.getAllTeams().subscribe(teams => {
-      this.teams = teams
-    })
+    this.loadTeams()
   }
 
   onDeleteTeam(team: Team) {
-    this.teamsService.deleteTeam(team.id)
+    console.log('deleting team ', team)
+    this.teamsService.deleteTeam(team.id).subscribe(_ => {
+      this.loadTeams()
+    })
   }
 
-  onEdit() {
-    this.teamsService.getAllTeams().subscribe(teams => {
-      this.teams = teams
-    })
+  onEditFinished() {
+    this.loadTeams()
   }
 
   onSelectEdit(team: Team) {
     this.selectedTeam = team
+  }
+
+  loadTeams() {
+    this.teamsService.getAllTeams().subscribe(teams => {
+      this.teams = teams
+    })
   }
 }

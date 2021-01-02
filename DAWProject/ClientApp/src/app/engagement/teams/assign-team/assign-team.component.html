@@ -1,0 +1,31 @@
+<div class="dropdown">
+  <button class="btn btn-secondary dropdown-toggle" type="button" id="usersDropdown" data-toggle="dropdown"
+          aria-haspopup="true" aria-expanded="false">
+    {{ selectedUser ? selectedUser.username : 'Users' }}
+  </button>
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+    <a class="dropdown-item" *ngFor="let user of users"
+       (click)="selectUser(user)">
+      {{user.username}}
+    </a>
+  </div>
+</div>
+
+<div class="dropdown">
+  <button class="btn btn-secondary dropdown-toggle" type="button" id="TeamsDropdown" data-toggle="dropdown"
+          aria-haspopup="true" aria-expanded="false">
+    {{ selectedTeam ? selectedTeam.name : 'Teams' }}
+  </button>
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+    <a class="dropdown-item" *ngFor="let Team of Teams"
+       (click)="selectTeam(Team)">
+      {{Team.name}}
+    </a>
+  </div>
+</div>
+
+<label>
+  <input type="checkbox" value="remember-me" [(ngModel)]="isUserTeamLead"> Is User Team Lead?
+</label>
+
+<button (click)="assignUserToTeam()">Assign User To Team</button>

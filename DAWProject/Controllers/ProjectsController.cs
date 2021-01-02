@@ -38,7 +38,7 @@ namespace DAWProject.Controllers
             return Ok();
         }
         
-        [HttpDelete("{id}")]
+        [HttpDelete("{projectId}")]
         public IActionResult DeleteProject(Guid projectId)
         {
             _engagementService.DeleteProject(projectId);

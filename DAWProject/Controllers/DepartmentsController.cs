@@ -38,7 +38,7 @@ namespace DAWProject.Controllers
             return Ok();
         }
         
-        [HttpDelete("{id}")]
+        [HttpDelete("{departmentId}")]
         public IActionResult DeleteDepartment(Guid departmentId)
         {
             _organizationService.DeleteDepartment(departmentId);

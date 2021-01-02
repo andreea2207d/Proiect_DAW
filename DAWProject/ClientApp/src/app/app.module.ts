@@ -20,6 +20,11 @@ import {ViewTeamsComponent} from "./engagement/teams/view-teams/view-teams.compo
 import {CreateTeamComponent} from "./engagement/teams/create-team/create-team.component";
 import {OrganisationModule} from "./organisation/organisation.module";
 import {EngagementModule} from "./engagement/engagement.module";
+import {CreateUserComponent} from "./organisation/create-user/create-user.component";
+import {AssignDepartmentComponent} from "./organisation/departments/assign-department/assign-department.component";
+import {AssignRoleComponent} from "./organisation/roles/assign-role/assign-role.component";
+import {AssignProjectComponent} from "./engagement/projects/assign-project/assign-project.component";
+import {AssignTeamComponent} from "./engagement/teams/assign-team/assign-team.component";
 
 @NgModule({
   declarations: [
@@ -33,7 +38,7 @@ import {EngagementModule} from "./engagement/engagement.module";
     FormsModule,
     RouterModule.forRoot([
       {path: '', component: HomeComponent, pathMatch: 'full', canActivate: [AuthGuard]},
-      {path: 'login', component: LoginComponent, pathMatch: 'full', canActivate: [AuthGuard]},
+      {path: 'login', component: LoginComponent, pathMatch: 'full'},
       {path: 'create-department', component: CreateDepartmentComponent, pathMatch: 'full', canActivate: [AuthGuard]},
       {path: 'view-departments', component: ViewDepartmentsComponent, pathMatch: 'full', canActivate: [AuthGuard]},
       {path: 'view-roles', component: ViewRolesComponent, pathMatch: 'full', canActivate: [AuthGuard]},
@@ -42,6 +47,11 @@ import {EngagementModule} from "./engagement/engagement.module";
       {path: 'create-project', component: CreateProjectComponent, pathMatch: 'full', canActivate: [AuthGuard]},
       {path: 'view-teams', component: ViewTeamsComponent, pathMatch: 'full', canActivate: [AuthGuard]},
       {path: 'create-team', component: CreateTeamComponent, pathMatch: 'full', canActivate: [AuthGuard]},
+      {path: 'create-user', component: CreateUserComponent, pathMatch: 'full', canActivate: [AuthGuard]},
+      {path: 'assign-department', component: AssignDepartmentComponent, pathMatch: 'full', canActivate: [AuthGuard]},
+      {path: 'assign-role', component: AssignRoleComponent, pathMatch: 'full', canActivate: [AuthGuard]},
+      {path: 'assign-project', component: AssignProjectComponent, pathMatch: 'full', canActivate: [AuthGuard]},
+      {path: 'assign-team', component: AssignTeamComponent, pathMatch: 'full', canActivate: [AuthGuard]},
     ]),
     OrganisationModule,
     EngagementModule
