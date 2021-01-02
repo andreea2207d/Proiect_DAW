@@ -17,5 +17,11 @@
   <input *ngIf="user" [(ngModel)]="user.password" name="password" type="password" id="inputPassword" class="form-control"
          placeholder="Password" required>
 
+  <label for="contract-start-date-input" class="col-2 col-form-label">Contract Start Date</label>
+  <input placeholder="dd-MM-yyyy" class=form-control type="date" name="inputContractStartDate" [(ngModel)]="user.contractStartDate" id="contract-start-date-input">
+
+  <label for="contract-end-date-input" class="col-2 col-form-label">Contract End Date</label>
+  <input placeholder="dd-MM-yyyy" class=form-control type="date" name="inputContractEndDate" [(ngModel)]="user.contractEndDate" id="contract-end-date-input">
+
   <button class="btn btn-lg btn-primary btn-block" type="submit" (click)="onCreate()">Create User</button>
 </form>

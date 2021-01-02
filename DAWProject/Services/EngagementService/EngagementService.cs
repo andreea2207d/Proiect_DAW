@@ -69,6 +69,7 @@ namespace DAWProject.Services.EngagementService
             AssignUserToTeam(userId, teamId);
             var team = _teamRepository.FindById(teamId);
             team.TeamLeader = _userRepository.FindById(userId);
+            team.TeamLeaderId = userId;
             _teamRepository.Update(team);
             _teamRepository.Save();
         }

@@ -24,6 +24,8 @@ export class UserCreation {
   role: Role;
   department: Department;
   team: Team;
+  contractStartDate: Date;
+  contractEndDate: Date;
 }
 
 export class UserSession {
