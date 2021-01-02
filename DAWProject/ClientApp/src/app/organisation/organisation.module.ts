@@ -11,20 +11,23 @@ import {EditRoleComponent} from "./roles/edit-role/edit-role.component";
 import {ViewRolesComponent} from "./roles/view-roles/view-roles.component";
 import {RoleService} from "./roles/role.service";
 import {DepartmentsService} from "./departments/departments.service";
-import { CreateUserComponent } from './create-user/create-user.component';
 import { UsernameDirective } from './username.directive';
 import { AssignDepartmentComponent } from './departments/assign-department/assign-department.component';
 import {AssignRoleComponent} from "./roles/assign-role/assign-role.component";
+import {ViewUsersComponent} from "./users/view-users/view-users.component";
+import {CreateUserComponent} from "./users/create-user/create-user.component";
+import { BooleanToWordPipe } from './boolean-to-word.pipe';
+import { NullToWordPipe } from './null-to-word.pipe';
 
 @NgModule({
-  declarations: [LoginComponent, ViewDepartmentsComponent, CreateDepartmentComponent, EditDepartmentComponent, ViewRolesComponent, CreateRoleComponent, EditRoleComponent, CreateUserComponent, UsernameDirective, AssignDepartmentComponent, AssignRoleComponent],
+  declarations: [LoginComponent, ViewDepartmentsComponent, CreateDepartmentComponent, EditDepartmentComponent, ViewRolesComponent, CreateRoleComponent, EditRoleComponent, CreateUserComponent, UsernameDirective, AssignDepartmentComponent, AssignRoleComponent, ViewUsersComponent, BooleanToWordPipe, NullToWordPipe],
   imports: [
     CommonModule,
     FormsModule,
     RouterModule
   ],
   providers: [RoleService, DepartmentsService],
-    exports: [LoginComponent, ViewDepartmentsComponent, CreateDepartmentComponent, EditDepartmentComponent, ViewRolesComponent, CreateRoleComponent, EditRoleComponent, UsernameDirective],
+    exports: [LoginComponent, ViewDepartmentsComponent, CreateDepartmentComponent, EditDepartmentComponent, ViewRolesComponent, CreateRoleComponent, EditRoleComponent, CreateUserComponent, UsernameDirective, AssignDepartmentComponent, AssignRoleComponent, ViewUsersComponent],
 })
 export class OrganisationModule {
 }

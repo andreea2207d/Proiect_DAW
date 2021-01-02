@@ -1,6 +1,7 @@
 import {Role} from "../organisation/models/Role";
 import {Department} from "../organisation/models/Department";
 import {Team} from "../engagement/models/Team";
+import {Project} from "../engagement/models/Project";
 
 export class User {
   id: string;
@@ -10,6 +11,8 @@ export class User {
   role: Role;
   department: Department;
   team: Team;
+  isTeamLeader: boolean
+  projects: Array<Project>
 }
 
 export class UserCreation {

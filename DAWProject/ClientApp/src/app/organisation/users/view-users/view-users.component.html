@@ -1,0 +1,31 @@
+<li class="nav-item" [routerLinkActive]="['link-active']">
+  <a class="nav-link text-dark" [routerLink]="['/create-user']"
+  >Create User Entry</a
+  >
+</li>
+<table class="table">
+  <thead>
+  <tr>
+    <th scope="col">First Name</th>
+    <th scope="col">Last Name</th>
+    <th scope="col">Username</th>
+    <th scope="col">Role</th>
+    <th scope="col">Department</th>
+    <th scope="col">Team</th>
+    <th scope="col">Team Lead</th>
+    <th scope="col">Projects</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let user of users">
+    <td>{{user.firstName}}</td>
+    <td>{{user.lastName}}</td>
+    <td>{{user.username}}</td>
+    <td>{{user.role | nullToWord}}</td>
+    <td>{{user.department | nullToWord}}</td>
+    <td>{{user.team | nullToWord}}</td>
+    <td>{{user.isTeamLeader | booleanToWord}}</td>
+    <td>{{user.projects | nullToWord}}</td>
+  </tr>
+  </tbody>
+</table>

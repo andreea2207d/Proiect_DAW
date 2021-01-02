@@ -20,5 +20,6 @@ namespace DAWProject.Services.EngagementService
         void EditProject(Project project);
         void DeleteProject(Guid projectId);
         void AssignUserToProject(Guid userId, Guid projectId);
+        Team FindByTeamLeadId(Guid userId);
     }
 }

@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using DAWProject.Models;
 using DAWProject.Models.DTOs;
@@ -72,7 +73,10 @@ namespace DAWProject.Services.EngagementService
             _teamRepository.Save();
         }
 
-        
+        public Team FindByTeamLeadId(Guid userId)
+        {
+            return _teamRepository.FindByTeamLead(userId);
+        }
 
         public IQueryable<Project> FindAllProjects()
         {
@@ -100,23 +104,14 @@ namespace DAWProject.Services.EngagementService
 
         public void AssignUserToProject(Guid userId, Guid projectId)
         {
-            var user = _userRepository.FindById(userId);
             var project = _projectRepository.FindById(projectId);
-            
             var userProject = new UserProject
             {
                 UserId = userId,
                 ProjectId = projectId
             };
 
-            _userProjectRepository.Create(userProject);
-            _userProjectRepository.Save();
-            
-            user.Projects.Add(userProject);
-            _userRepository.Update(user);
-            _userRepository.Save();
-            
-            project.Users.Add(userProject);
+            project.Users = new List<UserProject> {userProject};
             _projectRepository.Update(project);
             _projectRepository.Save();
         }

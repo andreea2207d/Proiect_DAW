@@ -20,11 +20,12 @@ import {ViewTeamsComponent} from "./engagement/teams/view-teams/view-teams.compo
 import {CreateTeamComponent} from "./engagement/teams/create-team/create-team.component";
 import {OrganisationModule} from "./organisation/organisation.module";
 import {EngagementModule} from "./engagement/engagement.module";
-import {CreateUserComponent} from "./organisation/create-user/create-user.component";
+import {CreateUserComponent} from "./organisation/users/create-user/create-user.component";
 import {AssignDepartmentComponent} from "./organisation/departments/assign-department/assign-department.component";
 import {AssignRoleComponent} from "./organisation/roles/assign-role/assign-role.component";
 import {AssignProjectComponent} from "./engagement/projects/assign-project/assign-project.component";
 import {AssignTeamComponent} from "./engagement/teams/assign-team/assign-team.component";
+import {ViewUsersComponent} from "./organisation/users/view-users/view-users.component";
 
 @NgModule({
   declarations: [
@@ -52,6 +53,7 @@ import {AssignTeamComponent} from "./engagement/teams/assign-team/assign-team.co
       {path: 'assign-role', component: AssignRoleComponent, pathMatch: 'full', canActivate: [AuthGuard]},
       {path: 'assign-project', component: AssignProjectComponent, pathMatch: 'full', canActivate: [AuthGuard]},
       {path: 'assign-team', component: AssignTeamComponent, pathMatch: 'full', canActivate: [AuthGuard]},
+      {path: 'view-users', component: ViewUsersComponent, pathMatch: 'full', canActivate: [AuthGuard]},
     ]),
     OrganisationModule,
     EngagementModule

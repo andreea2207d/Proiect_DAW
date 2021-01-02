@@ -42,6 +42,7 @@ export class AssignProjectComponent implements OnInit {
     let projectAssignment = new ProjectAssignment()
     projectAssignment.userId = this.selectedUser.id
     projectAssignment.projectId = this.selectedProject.id
+    console.log(projectAssignment)
     this.projectService.assignUser(projectAssignment).subscribe(_ => {
       this.router.navigateByUrl('view-projects').then()
     })
