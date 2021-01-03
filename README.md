@@ -39,3 +39,15 @@ In acestea avem incapsulate toate componentele necesare platformei
 Un exemplu de ecran este panoul angajatilor.
 
 ![image info](./app-screenshot.png)
+
+Urmat de panoul cu toate proiectele existente in firma
+
+![image info](./projects.png)
+
+Panoul cu informatii despre echipele existente
+
+![image info](./teams.png)
+
+Aici se pot vedea toate departamentele disponibile
+
+![image info](./departments.png)
