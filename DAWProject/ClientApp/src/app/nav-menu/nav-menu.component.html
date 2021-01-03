@@ -61,7 +61,7 @@
           </li>
 
           <li *ngIf="!isUserLoggedIn()" class="nav-item" [routerLinkActive]="['link-active']">
-            <a class="nav-link text-dark" (click)="logout()" [routerLink]="['/login']"
+            <a class="nav-link text-dark" [routerLink]="['/login']"
             >Log In</a
             >
           </li>

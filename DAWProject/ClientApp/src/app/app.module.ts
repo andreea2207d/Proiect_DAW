@@ -1,7 +1,7 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
 import {FormsModule} from '@angular/forms';
-import {HttpClientModule} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {RouterModule} from '@angular/router';
 
 import {AppComponent} from './app.component';
@@ -26,6 +26,7 @@ import {AssignRoleComponent} from "./organisation/roles/assign-role/assign-role.
 import {AssignProjectComponent} from "./engagement/projects/assign-project/assign-project.component";
 import {AssignTeamComponent} from "./engagement/teams/assign-team/assign-team.component";
 import {ViewUsersComponent} from "./organisation/users/view-users/view-users.component";
+import {JwtInterceptor} from "./organisation/AuthInterceptor";
 
 @NgModule({
   declarations: [
@@ -58,7 +59,10 @@ import {ViewUsersComponent} from "./organisation/users/view-users/view-users.com
     OrganisationModule,
     EngagementModule
   ],
-  providers: [AuthenticationService],
+  providers: [
+    AuthenticationService,
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {
